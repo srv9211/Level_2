@@ -1,0 +1,70 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param root: root of a tree
+     * @return: head node of a doubly linked list
+     */
+    
+    public TreeNode treeToDoublyList(TreeNode root) {
+        // Write your code here.
+        TreeNode head = null;
+        TreeNode tail = null;
+        if(root==null)
+            return null;
+        TreeNode curr = root;
+        while(curr != null){
+            
+            if(curr.left != null){
+                TreeNode rm = curr.left;
+                while(rm.right != null && rm.right != curr){
+                    rm = rm.right;
+                }
+                if(rm.right == null){
+                    rm.right = curr;
+                    curr = curr.left;
+                }
+                else{
+                    // I'm at node print it
+                    rm.right = null;
+                    TreeNode temp = curr.right;
+                    if(head == null)
+                        head = tail = curr;
+                    else{
+                        tail.right = curr;
+                        curr.left = tail;
+                        tail = curr;
+                    }
+                    
+                    curr = temp;
+                }
+            }
+            else{
+                // I'm at left in order - print it
+                TreeNode temp = curr.right;
+                if(head == null)
+                    head = tail = curr;
+                else{
+                    tail.right = curr;
+                    curr.left = tail;
+                    tail = curr;
+                }
+                curr = temp;
+            }
+        }
+        head.left = tail;
+        tail.right = head;
+        return head;
+
+    }
+}
