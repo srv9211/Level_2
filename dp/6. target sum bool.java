@@ -1,4 +1,5 @@
 // https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/target-sum-subsets-dp-official/ojquestion
+// https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/
 
 import java.io.*;
 import java.util.*;
